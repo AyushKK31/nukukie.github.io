@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Collection - Akash Rodhiya</title>
+    <style>
+        /* General Styles */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #ffffff;
+            color: #333;
+            text-align: center;
+        }
+
+        header {
+            padding: 40px 20px;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        nav {
+            font-size: 1.1rem;
+            color: #555;
+            margin-bottom: 40px;
+        }
+
+        /* Product Grid */
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            max-width: 1000px;
+            margin: 0 auto 100px auto;
+            padding: 0 20px;
+        }
+
+        .product-card {
+            text-align: left;
+        }
+
+        .product-card img {
+            width: 100%;
+            height: auto;
+            border-radius: 12px;
+            border: 1px solid #ddd;
+            background-color: #f5f5f5; /* Placeholder color */
+        }
+
+        .product-card h3 {
+            margin: 15px 0 5px 0;
+            font-size: 1.2rem;
+        }
+
+        .product-card p {
+            margin: 0;
+            font-weight: bold;
+            color: #222;
+        }
+
+        /* Fixed Bottom Button Section */
+        .footer-cta {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: #f3e5d8; /* Light beige from your image */
+            padding: 20px 0;
+            box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+        }
+
+        .order-button {
+            background-color: #5d4037; /* Dark brown from your image */
+            color: white;
+            padding: 15px 35px;
+            font-size: 1.1rem;
+            text-decoration: none;
+            border-radius: 8px;
+            display: inline-block;
+            transition: background 0.3s;
+        }
+
+        .order-button:hover {
+            background-color: #3e2723;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>My Collection</h1>
+        <nav>Calendars | Pins | Stickers | Bookmarks</nav>
+    </header>
+
+    <main class="product-grid">
+        <div class="product-card">
+            <img src="images/calendar.jpg" alt="2025 Calendar">
+            <h3>2025 Family Photo Calendar</h3>
+            <p>Price: ₹499</p>
+        </div>
+
+        <div class="product-card">
+            <img src="images/pins.jpg" alt="Pins">
+            <h3>Custom Enamel Pins</h3>
+            <p>Price: ₹150</p>
+        </div>
+
+        <div class="product-card">
+            <img src="images/stickers.jpg" alt="Stickers">
+            <h3>Sticker Packs</h3>
+            <p>Price: ₹99</p>
+        </div>
+
+        <div class="product-card">
+            <img src="images/bookmarks.jpg" alt="Bookmarks">
+            <h3>Artistic Bookmarks</h3>
+            <p>Price: ₹49</p>
+        </div>
+    </main>
+
+    <section class="footer-cta">
+        <a href="YOUR_GOOGLE_FORM_LINK" class="order-button">
+            Place Your Order & Get Receipt
+        </a>
+    </section>
+
+</body>
+</html>
