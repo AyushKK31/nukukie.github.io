@@ -3,178 +3,520 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nukukie crafts</title>
-    <style>
-        :root {
-            --bg-color: #fcfbf4; /* Creamy background */
-            --footer-bg: #d9b8a5; /* Earthy pinkish-tan */
-            --accent-brown: #333333;
-            --button-color: #3b3a36;
-        }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: var(--bg-color);
-            color: #333;
-        }
-
-        /* Header with Profile Pic */
-        header {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 60px 20px 40px 20px;
-            gap: 30px;
-        }
-
-        .profile-pic {
-            width: 120px;
-            height: 120px;
-            border-radius: 50%;
-            object-fit: cover;
-        }
-
-        .header-text {
-            text-align: left;
-        }
-
-        h1 {
-            font-size: 2.5rem;
-            margin: 0;
-            color: var(--accent-brown);
-        }
-
-        nav {
-            margin-top: 10px;
-            font-size: 1rem;
-            color: #555;
-        }
-
-        .filter-link {
-            text-decoration: none;
-            color: #555;
-            cursor: pointer;
-            margin: 0 5px;
-        }
-
-        .filter-link.active {
-            font-weight: bold;
-            color: #000;
-        }
-
-        /* Product Grid */
-        .product-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 25px;
-            max-width: 1000px;
-            margin: 0 auto 80px auto;
-            padding: 0 20px;
-        }
-
-        .product-card {
-            background: white;
-            padding: 15px;
-            border-radius: 15px;
-            text-align: left;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.02);
-        }
-
-        .product-card img {
-            width: 100%;
-            border-radius: 10px;
-            aspect-ratio: 1 / 1.2;
-            object-fit: cover;
-        }
-
-        .product-card h3 {
-            font-size: 1.1rem;
-            margin: 15px 0 5px 0;
-        }
-
-        .product-card p {
-            margin: 0;
-            font-size: 0.95rem;
-            color: #444;
-        }
-
-        .hidden { display: none; }
-
-        /* Order Button & Footer */
-        .order-section {
-            text-align: center;
-            margin-bottom: 60px;
-        }
-
-        .order-button {
-            background-color: var(--button-color);
-            color: white;
-            padding: 18px 40px;
-            font-size: 1.1rem;
-            text-decoration: none;
-            border-radius: 50px;
-            display: inline-block;
-            transition: transform 0.2s;
-        }
-
-        .order-button:hover {
-            transform: scale(1.05);
-        }
-
-        footer {
-            background-color: var(--footer-bg);
-            padding: 40px 20px;
-            text-align: center;
-        }
-
-        .signature {
-            max-width: 80px;
-            opacity: 0.7;
-        }
-
-    </style>
+    <title>Nukukie Crafts - Handmade Products</title>
+    
+    <!-- External CSS -->
+    <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
 
+    <!-- ============================================
+         HEADER SECTION
+         ============================================ -->
     <header>
         <img src="images/nukukie1.jpg" alt="Nukukie" class="profile-pic">
         <div class="header-text">
             <h1>Nukukie crafts</h1>
             <nav>
-                <a class="filter-link active" onclick="filterProducts('all')">All</a> | 
-                <a class="filter-link" onclick="filterProducts('calendar')">Calendars</a> | 
-                <a class="filter-link" onclick="filterProducts('pin')">Pins</a> | 
-                <a class="filter-link" onclick="filterProducts('sticker')">Stickers</a> | 
-                <a class="filter-link" onclick="filterProducts('bookmark')">Bookmarks</a>
+                <a class="filter-link active" data-category="all" onclick="filterProducts('all')">All</a>
+                <a class="filter-link" data-category="calendar" onclick="filterProducts('calendar')">Calendars</a>
+                <a class="filter-link" data-category="pin" onclick="filterProducts('pin')">Pins</a>
+                <a class="filter-link" data-category="sticker" onclick="filterProducts('sticker')">Stickers</a>
+                <a class="filter-link" data-category="bookmark" onclick="filterProducts('bookmark')">Bookmarks</a>
+                <a class="filter-link" data-category="magnetic-bookmark" onclick="filterProducts('magnetic-bookmark')">Magnetic Bookmark</a>
+                <a class="filter-link" data-category="keychain" onclick="filterProducts('keychain')">Keychain</a>
+                <a class="filter-link" data-category="postcard" onclick="filterProducts('postcard')">Postcard</a>
             </nav>
         </div>
     </header>
 
+    <!-- ============================================
+         PRODUCT GRID
+         ============================================ -->
     <main class="product-grid" id="productGrid">
+        <!-- Calendar - 1 product -->
         <div class="product-card calendar">
-            <img src="images/calendar.jpg" alt="Calendar">
-            <h3>2025 Family Photo Calendar</h3>
+            <div class="carousel-container">
+                <div class="carousel-images">
+                    <img src="images/calendar1_1.jpg" alt="Calendar">
+                    <img src="images/calendar1_2.jpg" alt="Calendar">
+                    <img src="images/calendar1_3.jpg" alt="Calendar">
+                    <img src="images/calendar1_4.jpg" alt="Calendar">
+                </div>
+                <button class="carousel-btn prev" onclick="moveCarousel(this, -1)">&#10094;</button>
+                <button class="carousel-btn next" onclick="moveCarousel(this, 1)">&#10095;</button>
+            </div>
+            <div class="carousel-dots">
+                <span class="dot active" onclick="currentSlide(this, 0)"></span>
+                <span class="dot" onclick="currentSlide(this, 1)"></span>
+                <span class="dot" onclick="currentSlide(this, 2)"></span>
+                <span class="dot" onclick="currentSlide(this, 3)"></span>
+            </div>
+            <h3>2026 Calendar with Planner </h3>
             <p>Price: ₹499</p>
+            <button class="quick-view-btn" onclick="quickView(this)">Quick View</button>
         </div>
 
+        <!-- Pins - 1 product -->
         <div class="product-card pin">
-            <img src="images/pins.jpg" alt="Pins">
+            <div class="carousel-container">
+                <div class="carousel-images">
+                    <img src="images/pin1_1.jpg" alt="Pins">
+                    <img src="images/pin1_2.jpg" alt="Pins">
+                    <img src="images/pin1_3.jpg" alt="Pins">
+                </div>
+                <button class="carousel-btn prev" onclick="moveCarousel(this, -1)">&#10094;</button>
+                <button class="carousel-btn next" onclick="moveCarousel(this, 1)">&#10095;</button>
+            </div>
+            <div class="carousel-dots">
+                <span class="dot active" onclick="currentSlide(this, 0)"></span>
+                <span class="dot" onclick="currentSlide(this, 1)"></span>
+                <span class="dot" onclick="currentSlide(this, 2)"></span>
+            </div>
             <h3>Custom Enamel Pins</h3>
             <p>Price: ₹150</p>
         </div>
 
+        <!-- Stickers - 6 products -->
         <div class="product-card sticker">
-            <img src="images/stickers.jpg" alt="Stickers">
-            <h3>Sticker Packs</h3>
+            <div class="carousel-container">
+                <div class="carousel-images">
+                    <img src="images/sticker_1_1.jpg" alt="Sticker 1">
+                    <img src="images/sticker_1_2.jpg" alt="Sticker 1">
+                    <img src="images/sticker_1_3.jpg" alt="Sticker 1">
+                </div>
+                <button class="carousel-btn prev" onclick="moveCarousel(this, -1)">&#10094;</button>
+                <button class="carousel-btn next" onclick="moveCarousel(this, 1)">&#10095;</button>
+            </div>
+            <div class="carousel-dots">
+                <span class="dot active" onclick="currentSlide(this, 0)"></span>
+                <span class="dot" onclick="currentSlide(this, 1)"></span>
+                <span class="dot" onclick="currentSlide(this, 2)"></span>
+            </div>
+            <h3>Sticker Pack 1</h3>
             <p>Price: ₹99</p>
         </div>
 
+        <div class="product-card sticker">
+            <div class="carousel-container">
+                <div class="carousel-images">
+                    <img src="images/sticker_2_1.jpg" alt="Sticker 2">
+                    <img src="images/sticker_2_2.jpg" alt="Sticker 2">
+                    <img src="images/sticker_2_3.jpg" alt="Sticker 2">
+                </div>
+                <button class="carousel-btn prev" onclick="moveCarousel(this, -1)">&#10094;</button>
+                <button class="carousel-btn next" onclick="moveCarousel(this, 1)">&#10095;</button>
+            </div>
+            <div class="carousel-dots">
+                <span class="dot active" onclick="currentSlide(this, 0)"></span>
+                <span class="dot" onclick="currentSlide(this, 1)"></span>
+                <span class="dot" onclick="currentSlide(this, 2)"></span>
+            </div>
+            <h3>Sticker Pack 2</h3>
+            <p>Price: ₹99</p>
+        </div>
+
+        <div class="product-card sticker">
+            <div class="carousel-container">
+                <div class="carousel-images">
+                    <img src="images/sticker_3_1.jpg" alt="Sticker 3">
+                    <img src="images/sticker_3_2.jpg" alt="Sticker 3">
+                    <img src="images/sticker_3_3.jpg" alt="Sticker 3">
+                </div>
+                <button class="carousel-btn prev" onclick="moveCarousel(this, -1)">&#10094;</button>
+                <button class="carousel-btn next" onclick="moveCarousel(this, 1)">&#10095;</button>
+            </div>
+            <div class="carousel-dots">
+                <span class="dot active" onclick="currentSlide(this, 0)"></span>
+                <span class="dot" onclick="currentSlide(this, 1)"></span>
+                <span class="dot" onclick="currentSlide(this, 2)"></span>
+            </div>
+            <h3>Sticker Pack 3</h3>
+            <p>Price: ₹99</p>
+        </div>
+
+        <div class="product-card sticker">
+            <div class="carousel-container">
+                <div class="carousel-images">
+                    <img src="images/sticker_4_1.jpg" alt="Sticker 4">
+                    <img src="images/sticker_4_2.jpg" alt="Sticker 4">
+                    <img src="images/sticker_4_3.jpg" alt="Sticker 4">
+                </div>
+                <button class="carousel-btn prev" onclick="moveCarousel(this, -1)">&#10094;</button>
+                <button class="carousel-btn next" onclick="moveCarousel(this, 1)">&#10095;</button>
+            </div>
+            <div class="carousel-dots">
+                <span class="dot active" onclick="currentSlide(this, 0)"></span>
+                <span class="dot" onclick="currentSlide(this, 1)"></span>
+                <span class="dot" onclick="currentSlide(this, 2)"></span>
+            </div>
+            <h3>Sticker Pack 4</h3>
+            <p>Price: ₹99</p>
+        </div>
+
+        <div class="product-card sticker">
+            <div class="carousel-container">
+                <div class="carousel-images">
+                    <img src="images/sticker_5_1.jpg" alt="Sticker 5">
+                    <img src="images/sticker_5_2.jpg" alt="Sticker 5">
+                    <img src="images/sticker_5_3.jpg" alt="Sticker 5">
+                </div>
+                <button class="carousel-btn prev" onclick="moveCarousel(this, -1)">&#10094;</button>
+                <button class="carousel-btn next" onclick="moveCarousel(this, 1)">&#10095;</button>
+            </div>
+            <div class="carousel-dots">
+                <span class="dot active" onclick="currentSlide(this, 0)"></span>
+                <span class="dot" onclick="currentSlide(this, 1)"></span>
+                <span class="dot" onclick="currentSlide(this, 2)"></span>
+            </div>
+            <h3>Sticker Pack 5</h3>
+            <p>Price: ₹99</p>
+        </div>
+
+        <div class="product-card sticker">
+            <div class="carousel-container">
+                <div class="carousel-images">
+                    <img src="images/sticker_6_1.jpg" alt="Sticker 6">
+                    <img src="images/sticker_6_2.jpg" alt="Sticker 6">
+                    <img src="images/sticker_6_3.jpg" alt="Sticker 6">
+                </div>
+                <button class="carousel-btn prev" onclick="moveCarousel(this, -1)">&#10094;</button>
+                <button class="carousel-btn next" onclick="moveCarousel(this, 1)">&#10095;</button>
+            </div>
+            <div class="carousel-dots">
+                <span class="dot active" onclick="currentSlide(this, 0)"></span>
+                <span class="dot" onclick="currentSlide(this, 1)"></span>
+                <span class="dot" onclick="currentSlide(this, 2)"></span>
+            </div>
+            <h3>Sticker Pack 6</h3>
+            <p>Price: ₹99</p>
+        </div>
+
+        <!-- Bookmarks - 4 products -->
         <div class="product-card bookmark">
-            <img src="images/bookmarks.jpg" alt="Bookmarks">
-            <h3>Artistic Bookmarks</h3>
+            <div class="carousel-container">
+                <div class="carousel-images">
+                    <img src="images/bm_ds1_1.jpg" alt="Bookmark 1">
+                    <img src="images/bm_ds1_2.jpg" alt="Bookmark 1">
+                    <img src="images/bm_ds1_3.jpg" alt="Bookmark 1">
+                </div>
+                <button class="carousel-btn prev" onclick="moveCarousel(this, -1)">&#10094;</button>
+                <button class="carousel-btn next" onclick="moveCarousel(this, 1)">&#10095;</button>
+            </div>
+            <div class="carousel-dots">
+                <span class="dot active" onclick="currentSlide(this, 0)"></span>
+                <span class="dot" onclick="currentSlide(this, 1)"></span>
+                <span class="dot" onclick="currentSlide(this, 2)"></span>
+            </div>
+            <h3>Artistic Bookmark 1</h3>
             <p>Price: ₹49</p>
+        </div>
+
+        <div class="product-card bookmark">
+            <div class="carousel-container">
+                <div class="carousel-images">
+                    <img src="images/bm_ds2_1.jpg" alt="Bookmark 2">
+                    <img src="images/bm_ds2_2.jpg" alt="Bookmark 2">
+                    <img src="images/bm_ds2_3.jpg" alt="Bookmark 2">
+                </div>
+                <button class="carousel-btn prev" onclick="moveCarousel(this, -1)">&#10094;</button>
+                <button class="carousel-btn next" onclick="moveCarousel(this, 1)">&#10095;</button>
+            </div>
+            <div class="carousel-dots">
+                <span class="dot active" onclick="currentSlide(this, 0)"></span>
+                <span class="dot" onclick="currentSlide(this, 1)"></span>
+                <span class="dot" onclick="currentSlide(this, 2)"></span>
+            </div>
+            <h3>Artistic Bookmark 2</h3>
+            <p>Price: ₹49</p>
+        </div>
+
+        <div class="product-card bookmark">
+            <div class="carousel-container">
+                <div class="carousel-images">
+                    <img src="images/bm_ds3_1.jpg" alt="Bookmark 3">
+                    <img src="images/bm_ds3_2.jpg" alt="Bookmark 3">
+                    <img src="images/bm_ds3_3.jpg" alt="Bookmark 3">
+                </div>
+                <button class="carousel-btn prev" onclick="moveCarousel(this, -1)">&#10094;</button>
+                <button class="carousel-btn next" onclick="moveCarousel(this, 1)">&#10095;</button>
+            </div>
+            <div class="carousel-dots">
+                <span class="dot active" onclick="currentSlide(this, 0)"></span>
+                <span class="dot" onclick="currentSlide(this, 1)"></span>
+                <span class="dot" onclick="currentSlide(this, 2)"></span>
+            </div>
+            <h3>Artistic Bookmark 3</h3>
+            <p>Price: ₹49</p>
+        </div>
+
+        <div class="product-card bookmark">
+            <div class="carousel-container">
+                <div class="carousel-images">
+                    <img src="images/bm_ds4_1.jpg" alt="Bookmark 4">
+                    <img src="images/bm_ds4_2.jpg" alt="Bookmark 4">
+                    <img src="images/bm_ds4_3.jpg" alt="Bookmark 4">
+                </div>
+                <button class="carousel-btn prev" onclick="moveCarousel(this, -1)">&#10094;</button>
+                <button class="carousel-btn next" onclick="moveCarousel(this, 1)">&#10095;</button>
+            </div>
+            <div class="carousel-dots">
+                <span class="dot active" onclick="currentSlide(this, 0)"></span>
+                <span class="dot" onclick="currentSlide(this, 1)"></span>
+                <span class="dot" onclick="currentSlide(this, 2)"></span>
+            </div>
+            <h3>Artistic Bookmark 4</h3>
+            <p>Price: ₹49</p>
+        </div>
+
+        <!-- Magnetic Bookmarks - 5 products -->
+        <div class="product-card magnetic-bookmark">
+            <div class="carousel-container">
+                <div class="carousel-images">
+                    <img src="images/mg_bm1_1.jpg" alt="Magnetic Bookmark 1">
+                    <img src="images/mg_bm1_2.jpg" alt="Magnetic Bookmark 1">
+                    <img src="images/mg_bm1_3.jpg" alt="Magnetic Bookmark 1">
+                </div>
+                <button class="carousel-btn prev" onclick="moveCarousel(this, -1)">&#10094;</button>
+                <button class="carousel-btn next" onclick="moveCarousel(this, 1)">&#10095;</button>
+            </div>
+            <div class="carousel-dots">
+                <span class="dot active" onclick="currentSlide(this, 0)"></span>
+                <span class="dot" onclick="currentSlide(this, 1)"></span>
+                <span class="dot" onclick="currentSlide(this, 2)"></span>
+            </div>
+            <h3>Magnetic Bookmark 1</h3>
+            <p>Price: ₹79</p>
+        </div>
+
+        <div class="product-card magnetic-bookmark">
+            <div class="carousel-container">
+                <div class="carousel-images">
+                    <img src="images/mg_bm2_1.jpg" alt="Magnetic Bookmark 2">
+                    <img src="images/mg_bm2_2.jpg" alt="Magnetic Bookmark 2">
+                    <img src="images/mg_bm2_3.jpg" alt="Magnetic Bookmark 2">
+                </div>
+                <button class="carousel-btn prev" onclick="moveCarousel(this, -1)">&#10094;</button>
+                <button class="carousel-btn next" onclick="moveCarousel(this, 1)">&#10095;</button>
+            </div>
+            <div class="carousel-dots">
+                <span class="dot active" onclick="currentSlide(this, 0)"></span>
+                <span class="dot" onclick="currentSlide(this, 1)"></span>
+                <span class="dot" onclick="currentSlide(this, 2)"></span>
+            </div>
+            <h3>Magnetic Bookmark 2</h3>
+            <p>Price: ₹79</p>
+        </div>
+
+        <div class="product-card magnetic-bookmark">
+            <div class="carousel-container">
+                <div class="carousel-images">
+                    <img src="images/mg_bm3_1.jpg" alt="Magnetic Bookmark 3">
+                    <img src="images/mg_bm3_2.jpg" alt="Magnetic Bookmark 3">
+                    <img src="images/mg_bm3_3.jpg" alt="Magnetic Bookmark 3">
+                </div>
+                <button class="carousel-btn prev" onclick="moveCarousel(this, -1)">&#10094;</button>
+                <button class="carousel-btn next" onclick="moveCarousel(this, 1)">&#10095;</button>
+            </div>
+            <div class="carousel-dots">
+                <span class="dot active" onclick="currentSlide(this, 0)"></span>
+                <span class="dot" onclick="currentSlide(this, 1)"></span>
+                <span class="dot" onclick="currentSlide(this, 2)"></span>
+            </div>
+            <h3>Magnetic Bookmark 3</h3>
+            <p>Price: ₹79</p>
+        </div>
+
+        <div class="product-card magnetic-bookmark">
+            <div class="carousel-container">
+                <div class="carousel-images">
+                    <img src="images/mg_bm4_1.jpg" alt="Magnetic Bookmark 4">
+                    <img src="images/mg_bm4_2.jpg" alt="Magnetic Bookmark 4">
+                    <img src="images/mg_bm4_3.jpg" alt="Magnetic Bookmark 4">
+                </div>
+                <button class="carousel-btn prev" onclick="moveCarousel(this, -1)">&#10094;</button>
+                <button class="carousel-btn next" onclick="moveCarousel(this, 1)">&#10095;</button>
+            </div>
+            <div class="carousel-dots">
+                <span class="dot active" onclick="currentSlide(this, 0)"></span>
+                <span class="dot" onclick="currentSlide(this, 1)"></span>
+                <span class="dot" onclick="currentSlide(this, 2)"></span>
+            </div>
+            <h3>Magnetic Bookmark 4</h3>
+            <p>Price: ₹79</p>
+        </div>
+
+        <div class="product-card magnetic-bookmark">
+            <div class="carousel-container">
+                <div class="carousel-images">
+                    <img src="images/mg_bm5_1.jpg" alt="Magnetic Bookmark 5">
+                    <img src="images/mg_bm5_2.jpg" alt="Magnetic Bookmark 5">
+                    <img src="images/mg_bm5_3.jpg" alt="Magnetic Bookmark 5">
+                </div>
+                <button class="carousel-btn prev" onclick="moveCarousel(this, -1)">&#10094;</button>
+                <button class="carousel-btn next" onclick="moveCarousel(this, 1)">&#10095;</button>
+            </div>
+            <div class="carousel-dots">
+                <span class="dot active" onclick="currentSlide(this, 0)"></span>
+                <span class="dot" onclick="currentSlide(this, 1)"></span>
+                <span class="dot" onclick="currentSlide(this, 2)"></span>
+            </div>
+            <h3>Magnetic Bookmark 5</h3>
+            <p>Price: ₹79</p>
+        </div>
+
+        <!-- Keychain - 1 product (you can add more if needed) -->
+        <div class="product-card keychain">
+            <div class="carousel-container">
+                <div class="carousel-images">
+                    <img src="images/Keychain1_1.jpg" alt="Keychain">
+                    <img src="images/Keychain1_2.jpg" alt="Keychain">
+                    <img src="images/Keychain1_3.jpg" alt="Keychain">
+                </div>
+                <button class="carousel-btn prev" onclick="moveCarousel(this, -1)">&#10094;</button>
+                <button class="carousel-btn next" onclick="moveCarousel(this, 1)">&#10095;</button>
+            </div>
+            <div class="carousel-dots">
+                <span class="dot active" onclick="currentSlide(this, 0)"></span>
+                <span class="dot" onclick="currentSlide(this, 1)"></span>
+                <span class="dot" onclick="currentSlide(this, 2)"></span>
+            </div>
+            <h3>Custom Keychain 1</h3>
+            <p>Price: ₹129</p>
+        </div>
+
+        <div class="product-card keychain">
+            <div class="carousel-container">
+                <div class="carousel-images">
+                    <img src="images/Keychain2_1.jpg" alt="Keychain 2">
+                    <img src="images/Keychain2_2.jpg" alt="Keychain 2">
+                    <img src="images/Keychain2_3.jpg" alt="Keychain 2">
+                </div>
+                <button class="carousel-btn prev" onclick="moveCarousel(this, -1)">&#10094;</button>
+                <button class="carousel-btn next" onclick="moveCarousel(this, 1)">&#10095;</button>
+            </div>
+            <div class="carousel-dots">
+                <span class="dot active" onclick="currentSlide(this, 0)"></span>
+                <span class="dot" onclick="currentSlide(this, 1)"></span>
+                <span class="dot" onclick="currentSlide(this, 2)"></span>
+            </div>
+            <h3>Custom Keychain 2</h3>
+            <p>Price: ₹129</p>
+        </div>
+
+        <!-- Postcard - 6 products -->
+        <div class="product-card postcard">
+            <div class="carousel-container">
+                <div class="carousel-images">
+                    <img src="images/postcard1_1.jpg" alt="Postcard 1">
+                    <img src="images/postcard1_2.jpg" alt="Postcard 1">
+                    <img src="images/postcard1_3.jpg" alt="Postcard 1">
+                </div>
+                <button class="carousel-btn prev" onclick="moveCarousel(this, -1)">&#10094;</button>
+                <button class="carousel-btn next" onclick="moveCarousel(this, 1)">&#10095;</button>
+            </div>
+            <div class="carousel-dots">
+                <span class="dot active" onclick="currentSlide(this, 0)"></span>
+                <span class="dot" onclick="currentSlide(this, 1)"></span>
+                <span class="dot" onclick="currentSlide(this, 2)"></span>
+            </div>
+            <h3>Postcard 1</h3>
+            <p>Price: ₹59</p>
+        </div>
+
+        <div class="product-card postcard">
+            <div class="carousel-container">
+                <div class="carousel-images">
+                    <img src="images/postcard2_1.jpg" alt="Postcard 2">
+                    <img src="images/postcard2_2.jpg" alt="Postcard 2">
+                    <img src="images/postcard2_3.jpg" alt="Postcard 2">
+                </div>
+                <button class="carousel-btn prev" onclick="moveCarousel(this, -1)">&#10094;</button>
+                <button class="carousel-btn next" onclick="moveCarousel(this, 1)">&#10095;</button>
+            </div>
+            <div class="carousel-dots">
+                <span class="dot active" onclick="currentSlide(this, 0)"></span>
+                <span class="dot" onclick="currentSlide(this, 1)"></span>
+                <span class="dot" onclick="currentSlide(this, 2)"></span>
+            </div>
+            <h3>Postcard 2</h3>
+            <p>Price: ₹59</p>
+        </div>
+
+        <div class="product-card postcard">
+            <div class="carousel-container">
+                <div class="carousel-images">
+                    <img src="images/postcard3_1.jpg" alt="Postcard 3">
+                    <img src="images/postcard3_2.jpg" alt="Postcard 3">
+                    <img src="images/postcard3_3.jpg" alt="Postcard 3">
+                </div>
+                <button class="carousel-btn prev" onclick="moveCarousel(this, -1)">&#10094;</button>
+                <button class="carousel-btn next" onclick="moveCarousel(this, 1)">&#10095;</button>
+            </div>
+            <div class="carousel-dots">
+                <span class="dot active" onclick="currentSlide(this, 0)"></span>
+                <span class="dot" onclick="currentSlide(this, 1)"></span>
+                <span class="dot" onclick="currentSlide(this, 2)"></span>
+            </div>
+            <h3>Postcard 3</h3>
+            <p>Price: ₹59</p>
+        </div>
+
+        <div class="product-card postcard">
+            <div class="carousel-container">
+                <div class="carousel-images">
+                    <img src="images/postcard4_1.jpg" alt="Postcard 4">
+                    <img src="images/postcard4_2.jpg" alt="Postcard 4">
+                    <img src="images/postcard4_3.jpg" alt="Postcard 4">
+                </div>
+                <button class="carousel-btn prev" onclick="moveCarousel(this, -1)">&#10094;</button>
+                <button class="carousel-btn next" onclick="moveCarousel(this, 1)">&#10095;</button>
+            </div>
+            <div class="carousel-dots">
+                <span class="dot active" onclick="currentSlide(this, 0)"></span>
+                <span class="dot" onclick="currentSlide(this, 1)"></span>
+                <span class="dot" onclick="currentSlide(this, 2)"></span>
+            </div>
+            <h3>Postcard 4</h3>
+            <p>Price: ₹59</p>
+        </div>
+
+        <div class="product-card postcard">
+            <div class="carousel-container">
+                <div class="carousel-images">
+                    <img src="images/postcard5_1.jpg" alt="Postcard 5">
+                    <img src="images/postcard5_2.jpg" alt="Postcard 5">
+                    <img src="images/postcard5_3.jpg" alt="Postcard 5">
+                </div>
+                <button class="carousel-btn prev" onclick="moveCarousel(this, -1)">&#10094;</button>
+                <button class="carousel-btn next" onclick="moveCarousel(this, 1)">&#10095;</button>
+            </div>
+            <div class="carousel-dots">
+                <span class="dot active" onclick="currentSlide(this, 0)"></span>
+                <span class="dot" onclick="currentSlide(this, 1)"></span>
+                <span class="dot" onclick="currentSlide(this, 2)"></span>
+            </div>
+            <h3>Postcard 5</h3>
+            <p>Price: ₹59</p>
+        </div>
+
+        <div class="product-card postcard">
+            <div class="carousel-container">
+                <div class="carousel-images">
+                    <img src="images/postcard6_1.jpg" alt="Postcard 6">
+                    <img src="images/postcard6_2.jpg" alt="Postcard 6">
+                    <img src="images/postcard6_3.jpg" alt="Postcard 6">
+                </div>
+                <button class="carousel-btn prev" onclick="moveCarousel(this, -1)">&#10094;</button>
+                <button class="carousel-btn next" onclick="moveCarousel(this, 1)">&#10095;</button>
+            </div>
+            <div class="carousel-dots">
+                <span class="dot active" onclick="currentSlide(this, 0)"></span>
+                <span class="dot" onclick="currentSlide(this, 1)"></span>
+                <span class="dot" onclick="currentSlide(this, 2)"></span>
+            </div>
+            <h3>Postcard 6</h3>
+            <p>Price: ₹59</p>
         </div>
     </main>
 
@@ -182,30 +524,14 @@
         <a href="https://docs.google.com/forms/d/e/1FAIpQLSejCZi0WWlWtbkBu4tl3fF0PrGLsS-AgurIZOh0xPUuL4EOkw/viewform" class="order-button">Place Your Order & Get Receipt</a>
     </div>
 
+    <!-- ============================================
+         FOOTER SECTION
+         ============================================ -->
     <footer>
         <img src="images/signature.png" alt="NK Signature" class="signature">
     </footer>
 
-    <script>
-        function filterProducts(category) {
-            const products = document.querySelectorAll('.product-card');
-            const links = document.querySelectorAll('.filter-link');
-            
-            links.forEach(link => {
-                link.classList.remove('active');
-                if (link.textContent.toLowerCase().includes(category) || (category === 'all' && link.textContent === 'All')) {
-                    link.classList.add('active');
-                }
-            });
-
-            products.forEach(product => {
-                if (category === 'all' || product.classList.contains(category)) {
-                    product.classList.remove('hidden');
-                } else {
-                    product.classList.add('hidden');
-                }
-            });
-        }
-    </script>
+    <!-- External JavaScript -->
+    <script src="js/script.js"></script>
 </body>
 </html>
